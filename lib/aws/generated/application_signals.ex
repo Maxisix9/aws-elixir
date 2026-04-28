@@ -283,6 +283,7 @@ defmodule AWS.ApplicationSignals do
 
       service_level_objective_summary() :: %{
         "Arn" => String.t() | atom(),
+        "CompositeSliConfig" => composite_sli_config(),
         "CreatedTime" => [non_neg_integer()],
         "DependencyConfig" => dependency_config(),
         "EvaluationType" => list(any()),
@@ -310,6 +311,7 @@ defmodule AWS.ApplicationSignals do
   ## Example:
 
       service_level_indicator_metric_config() :: %{
+        "CompositeSliConfig" => composite_sli_config(),
         "DependencyConfig" => dependency_config(),
         "KeyAttributes" => map(),
         "MetricDataQueries" => list(metric_data_query()),
@@ -405,6 +407,7 @@ defmodule AWS.ApplicationSignals do
   ## Example:
 
       create_service_level_objective_input() :: %{
+        optional("AutoInvestigationEnabled") => [boolean()],
         optional("BurnRateConfigurations") => list(burn_rate_configuration()),
         optional("CreateRecommendedSlo") => [boolean()],
         optional("Description") => String.t() | atom(),
@@ -453,6 +456,7 @@ defmodule AWS.ApplicationSignals do
 
       service_level_objective() :: %{
         "Arn" => String.t() | atom(),
+        "AutoInvestigationEnabled" => [boolean()],
         "BurnRateConfigurations" => list(burn_rate_configuration()),
         "CreatedTime" => [non_neg_integer()],
         "Description" => String.t() | atom(),
@@ -525,6 +529,7 @@ defmodule AWS.ApplicationSignals do
   ## Example:
 
       service_level_indicator_metric() :: %{
+        "CompositeSliConfig" => composite_sli_config(),
         "DependencyConfig" => dependency_config(),
         "KeyAttributes" => map(),
         "MetricDataQueries" => list(metric_data_query()),
@@ -541,6 +546,7 @@ defmodule AWS.ApplicationSignals do
   ## Example:
 
       request_based_service_level_indicator_metric_config() :: %{
+        "CompositeSliConfig" => composite_sli_config(),
         "DependencyConfig" => dependency_config(),
         "KeyAttributes" => map(),
         "MetricName" => String.t() | atom(),
@@ -553,6 +559,18 @@ defmodule AWS.ApplicationSignals do
 
   """
   @type request_based_service_level_indicator_metric_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      selection_config() :: %{
+        "Pattern" => String.t() | atom(),
+        "Type" => list(any())
+      }
+
+  """
+  @type selection_config() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -795,6 +813,18 @@ defmodule AWS.ApplicationSignals do
 
   ## Example:
 
+      composite_sli_config() :: %{
+        "Components" => list(list()),
+        "SelectionConfig" => selection_config()
+      }
+
+  """
+  @type composite_sli_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       service_dependent() :: %{
         "DependentKeyAttributes" => map(),
         "DependentOperationName" => String.t() | atom(),
@@ -994,6 +1024,7 @@ defmodule AWS.ApplicationSignals do
   ## Example:
 
       request_based_service_level_indicator_metric() :: %{
+        "CompositeSliConfig" => composite_sli_config(),
         "DependencyConfig" => dependency_config(),
         "KeyAttributes" => map(),
         "MetricSource" => metric_source(),
@@ -1025,6 +1056,7 @@ defmodule AWS.ApplicationSignals do
   ## Example:
 
       update_service_level_objective_input() :: %{
+        optional("AutoInvestigationEnabled") => [boolean()],
         optional("BurnRateConfigurations") => list(burn_rate_configuration()),
         optional("Description") => String.t() | atom(),
         optional("Goal") => goal(),

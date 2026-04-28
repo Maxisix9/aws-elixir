@@ -3316,6 +3316,7 @@ defmodule AWS.CloudWatchLogs do
         "createdTimeStamp" => float(),
         "dataSource" => data_source(),
         "identifier" => String.t() | atom(),
+        "parentSourceIdentifier" => String.t() | atom(),
         "status" => list(any()),
         "statusReason" => String.t() | atom()
       }

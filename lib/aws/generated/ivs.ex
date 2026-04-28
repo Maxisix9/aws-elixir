@@ -1588,6 +1588,7 @@ defmodule AWS.Ivs do
 
       create_ad_configuration_request() :: %{
         optional("name") => String.t() | atom(),
+        optional("tags") => map(),
         required("mediaTailorPlaybackConfigurations") => list(media_tailor_playback_configuration())
       }
 

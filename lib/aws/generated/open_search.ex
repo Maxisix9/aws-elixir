@@ -1238,6 +1238,7 @@ defmodule AWS.OpenSearch do
 
       j_w_t_options_input() :: %{
         "Enabled" => boolean(),
+        "JwksUrl" => String.t() | atom(),
         "PublicKey" => String.t() | atom(),
         "RolesKey" => String.t() | atom(),
         "SubjectKey" => String.t() | atom()
@@ -3190,6 +3191,7 @@ defmodule AWS.OpenSearch do
 
       j_w_t_options_output() :: %{
         "Enabled" => boolean(),
+        "JwksUrl" => String.t() | atom(),
         "PublicKey" => String.t() | atom(),
         "RolesKey" => String.t() | atom(),
         "SubjectKey" => String.t() | atom()

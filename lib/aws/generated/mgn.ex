@@ -274,6 +274,8 @@ defmodule AWS.Mgn do
   ## Example:
 
       update_operation() :: %{
+        "excluded" => [boolean()],
+        "name" => String.t() | atom(),
         "properties" => map()
       }
 
@@ -1186,6 +1188,7 @@ defmodule AWS.Mgn do
         "constructType" => String.t() | atom(),
         "createdAt" => [non_neg_integer()],
         "description" => String.t() | atom(),
+        "excluded" => [boolean()],
         "logicalID" => String.t() | atom(),
         "name" => String.t() | atom(),
         "properties" => map(),
@@ -1573,6 +1576,15 @@ defmodule AWS.Mgn do
 
   ## Example:
 
+      delete_operation() :: %{}
+
+  """
+  @type delete_operation() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
       resource_not_found_exception() :: %{
         "code" => String.t() | atom(),
         "message" => String.t() | atom(),
@@ -1676,6 +1688,17 @@ defmodule AWS.Mgn do
 
   """
   @type post_launch_actions() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      merge_operation() :: %{
+        "mergeConstructs" => list(merge_construct())
+      }
+
+  """
+  @type merge_operation() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2345,6 +2368,18 @@ defmodule AWS.Mgn do
 
   ## Example:
 
+      merge_construct() :: %{
+        "constructID" => String.t() | atom(),
+        "segmentID" => String.t() | atom()
+      }
+
+  """
+  @type merge_construct() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       describe_launch_configuration_templates_response() :: %{
         optional("items") => list(launch_configuration_template()),
         optional("nextToken") => String.t() | atom()
@@ -2897,6 +2932,17 @@ defmodule AWS.Mgn do
 
   ## Example:
 
+      split_construct() :: %{
+        "cidrBlock" => String.t() | atom()
+      }
+
+  """
+  @type split_construct() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       list_network_migration_analysis_results_filters() :: %{
         "vpcIDs" => list(String.t() | atom())
       }
@@ -3079,6 +3125,17 @@ defmodule AWS.Mgn do
 
   """
   @type list_imports_request_filters() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      split_operation() :: %{
+        "splitConstructs" => list(split_construct())
+      }
+
+  """
+  @type split_operation() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 

@@ -981,8 +981,10 @@ defmodule AWS.Omics do
       default_run_setting() :: %{
         "cacheBehavior" => String.t() | atom(),
         "cacheId" => String.t() | atom(),
+        "configurationName" => String.t() | atom(),
         "logLevel" => String.t() | atom(),
         "name" => String.t() | atom(),
+        "networkingMode" => String.t() | atom(),
         "outputBucketOwnerId" => String.t() | atom(),
         "outputUri" => String.t() | atom(),
         "parameters" => any(),
@@ -8856,8 +8858,9 @@ defmodule AWS.Omics do
   Amazon S3 via `s3UriSettings` (up to 100,000 runs).
 
   `StartRunBatch` validates common fields synchronously and returns immediately
-  with a batch ID and status `PENDING`. Runs are submitted gradually and
-  asynchronously at a rate governed by your `StartRun` throughput quota.
+  with a batch ID and status `CREATING`. The batch transitions to `PENDING` once
+  initial setup completes. Runs are then submitted gradually and asynchronously at
+  a rate governed by your `StartRun` throughput quota.
   """
   @spec start_run_batch(map(), start_run_batch_request(), list()) ::
           {:ok, start_run_batch_response(), any()}

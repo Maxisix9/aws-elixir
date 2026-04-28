@@ -4309,6 +4309,7 @@ defmodule AWS.Glue do
   ## Example:
       
       get_table_versions_request() :: %{
+        optional("AuditContext") => audit_context(),
         optional("CatalogId") => String.t() | atom(),
         optional("MaxResults") => integer(),
         optional("NextToken") => String.t() | atom(),
@@ -10063,6 +10064,7 @@ defmodule AWS.Glue do
   ## Example:
       
       get_table_version_request() :: %{
+        optional("AuditContext") => audit_context(),
         optional("CatalogId") => String.t() | atom(),
         optional("VersionId") => String.t() | atom(),
         required("DatabaseName") => String.t() | atom(),
@@ -11824,6 +11826,7 @@ defmodule AWS.Glue do
   ## Example:
       
       get_partitions_request() :: %{
+        optional("AuditContext") => audit_context(),
         optional("CatalogId") => String.t() | atom(),
         optional("ExcludeColumnSchema") => boolean(),
         optional("Expression") => String.t() | atom(),
@@ -12409,6 +12412,7 @@ defmodule AWS.Glue do
   ## Example:
       
       get_partition_request() :: %{
+        optional("AuditContext") => audit_context(),
         optional("CatalogId") => String.t() | atom(),
         required("DatabaseName") => String.t() | atom(),
         required("PartitionValues") => list(String.t() | atom()),
