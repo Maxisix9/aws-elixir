@@ -1531,6 +1531,19 @@ defmodule AWS.GameLift do
 
   ## Example:
       
+      container_port_mapping() :: %{
+        "ConnectionPort" => integer(),
+        "ContainerPort" => integer(),
+        "Protocol" => list(any())
+      }
+      
+  """
+  @type container_port_mapping() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+      
       register_game_server_output() :: %{
         "GameServer" => game_server()
       }
@@ -2555,6 +2568,19 @@ defmodule AWS.GameLift do
       
   """
   @type describe_instances_output() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+      
+      container_group_port_mapping() :: %{
+        "ContainerName" => String.t() | atom(),
+        "ContainerPortMappings" => list(container_port_mapping()),
+        "ContainerRuntimeId" => String.t() | atom()
+      }
+      
+  """
+  @type container_group_port_mapping() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -3644,6 +3670,21 @@ defmodule AWS.GameLift do
 
   ## Example:
       
+      describe_container_group_port_mappings_input() :: %{
+        optional("ComputeName") => String.t() | atom(),
+        optional("ContainerName") => String.t() | atom(),
+        optional("InstanceId") => String.t() | atom(),
+        required("ContainerGroupType") => list(any()),
+        required("FleetId") => String.t() | atom()
+      }
+      
+  """
+  @type describe_container_group_port_mappings_input() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+      
       container_fleet() :: %{
         "BillingType" => list(any()),
         "CreationTime" => non_neg_integer(),
@@ -3948,6 +3989,23 @@ defmodule AWS.GameLift do
       
   """
   @type claim_game_server_output() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+      
+      describe_container_group_port_mappings_output() :: %{
+        "ComputeName" => String.t() | atom(),
+        "ContainerGroupDefinitionArn" => String.t() | atom(),
+        "ContainerGroupPortMappings" => list(container_group_port_mapping()),
+        "ContainerGroupType" => list(any()),
+        "FleetId" => String.t() | atom(),
+        "InstanceId" => String.t() | atom(),
+        "Location" => String.t() | atom()
+      }
+      
+  """
+  @type describe_container_group_port_mappings_output() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -4854,6 +4912,14 @@ defmodule AWS.GameLift do
 
   @type describe_container_group_definition_errors() ::
           unsupported_region_exception()
+          | not_found_exception()
+          | invalid_request_exception()
+          | internal_service_exception()
+          | unauthorized_exception()
+
+  @type describe_container_group_port_mappings_errors() ::
+          limit_exceeded_exception()
+          | unsupported_region_exception()
           | not_found_exception()
           | invalid_request_exception()
           | internal_service_exception()
@@ -7473,6 +7539,67 @@ defmodule AWS.GameLift do
 
   @doc """
 
+  **This API works with the following fleet types:** Container
+
+  Retrieves the port mappings for a container group running on a container fleet.
+
+  Port
+  mappings show how container ports are mapped to connection ports on the fleet
+  instance.
+  Use this operation to find the connection port for a specific container on a
+  fleet
+  instance.
+
+  ## Request options
+
+    *
+  Get port mappings for a game server container group. Provide the fleet ID,
+  set `ContainerGroupType` to `GAME_SERVER`, and specify the
+  `ComputeName` for the game server container group.
+
+    *
+  Get port mappings for a per-instance container group. Provide the fleet ID,
+  set `ContainerGroupType` to `PER_INSTANCE`, and specify the
+  `InstanceId` for the instance.
+
+    *
+  Optionally filter results to a single container by providing a
+  `ContainerName`.
+
+  ## Results
+
+  This operation returns the fleet ID, location, container group definition
+  ARN, container group type, compute name (for game server container groups),
+  instance ID,
+  and a list of `ContainerGroupPortMapping` objects. Each object contains the
+  container name, runtime ID, and a list of port mappings that show how container
+  ports map
+  to connection ports on the instance.
+
+  ## Learn more
+
+  [Connect to containers](https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-remote-access.html)
+
+  [Create a container group
+  definition](https://docs.aws.amazon.com/gamelift/latest/developerguide/containers-create-groups.html)
+  """
+  @spec describe_container_group_port_mappings(
+          map(),
+          describe_container_group_port_mappings_input(),
+          list()
+        ) ::
+          {:ok, describe_container_group_port_mappings_output(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, describe_container_group_port_mappings_errors()}
+  def describe_container_group_port_mappings(%Client{} = client, input, options \\ []) do
+    meta = metadata()
+
+    Request.request_post(client, meta, "DescribeContainerGroupPortMappings", input, options)
+  end
+
+  @doc """
+
   **This API works with the following fleet types:** EC2
 
   Retrieves the instance limits and current utilization for an Amazon Web Services
@@ -7496,28 +7623,31 @@ defmodule AWS.GameLift do
   Amazon Web Services
   Region (either explicitly or as your default settings). To get the limit for a
   remote
-  location, you must also specify the location. For example, the following
-  requests all
+  location, you must also specify the location. To learn more about how Amazon
+  GameLift Servers handles
+  locations, see [Amazon GameLift Servers service locations](https://docs.aws.amazon.com/gameliftservers/latest/developerguide/gamelift-regions.html).
+  For example, the following requests all
   return different results:
 
     *
   Request specifies the Region `ap-northeast-1` with no location. The
-  result is limits and usage data on all instance types that are deployed in
-  `us-east-2`, by all of the fleets that reside in
+  result is limits and usage data on all of the fleets that reside in
+  `ap-northeast-1`, for all instance types that are deployed in
   `ap-northeast-1`.
 
     *
-  Request specifies the Region `us-east-1` with location
-  `ca-central-1`. The result is limits and usage data on all
-  instance types that are deployed in `ca-central-1`, by all of the
-  fleets that reside in `us-east-2`. These limits do not affect fleets
-  in any other Regions that deploy instances to `ca-central-1`.
+  Request specifies the Region `ap-northeast-1` with location
+  `us-west-2`. The result is limits and usage data on all of the
+  fleets that reside in `ap-northeast-1`, for all instance types
+  that are deployed in `us-west-2`.
 
     *
-  Request specifies the Region `eu-west-1` with location
-  `ca-central-1`. The result is limits and usage data on all
-  instance types that are deployed in `ca-central-1`, by all of the
-  fleets that reside in `eu-west-1`.
+  Request specifies the Region `us-east-1` with location
+  `ap-northeast-1`. The result is limits and usage data on all of
+  the fleets that reside in `us-east-1`, for all instance types
+  that are deployed in `ap-northeast-1`. These limits do not affect
+  fleets in any other Regions that deploy instances to
+  `ap-northeast-1`.
 
   This operation can be used in the following ways:
 
@@ -9661,9 +9791,9 @@ defmodule AWS.GameLift do
 
     *
 
-  **gameSessionId** -- A unique identifier for the game session. You can use
-  either a
-  `GameSessionId` or `GameSessionArn` value.
+  **gameSessionId** -- An identifier for the game session that is unique across
+  all regions. You must use the
+  full ARN value.
 
     *
 

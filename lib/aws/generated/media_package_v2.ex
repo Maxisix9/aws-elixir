@@ -133,6 +133,7 @@ defmodule AWS.MediaPackageV2 do
         optional("Segment") => segment(),
         optional("StartoverWindowSeconds") => [integer()],
         optional("Tags") => map(),
+        optional("UriSeparator") => list(any()),
         required("ContainerType") => list(any()),
         required("OriginEndpointName") => String.t() | atom()
       }
@@ -261,7 +262,8 @@ defmodule AWS.MediaPackageV2 do
         "OriginEndpointName" => String.t() | atom(),
         "Segment" => segment(),
         "StartoverWindowSeconds" => [integer()],
-        "Tags" => map()
+        "Tags" => map(),
+        "UriSeparator" => list(any())
       }
 
   """
@@ -279,6 +281,7 @@ defmodule AWS.MediaPackageV2 do
         "ProgramDateTimeIntervalSeconds" => [integer()],
         "ScteHls" => scte_hls(),
         "StartTag" => start_tag(),
+        "UriPathType" => list(any()),
         "UrlEncodeChildManifest" => [boolean()]
       }
 
@@ -306,6 +309,7 @@ defmodule AWS.MediaPackageV2 do
         "SegmentTemplateFormat" => list(any()),
         "SubtitleConfiguration" => dash_subtitle_configuration(),
         "SuggestedPresentationDelaySeconds" => [integer()],
+        "UriPathType" => list(any()),
         "UtcTiming" => dash_utc_timing()
       }
 
@@ -339,6 +343,7 @@ defmodule AWS.MediaPackageV2 do
         optional("MssManifests") => list(create_mss_manifest_configuration()),
         optional("Segment") => segment(),
         optional("StartoverWindowSeconds") => [integer()],
+        optional("UriSeparator") => list(any()),
         required("ContainerType") => list(any())
       }
 
@@ -449,6 +454,7 @@ defmodule AWS.MediaPackageV2 do
         "ProgramDateTimeIntervalSeconds" => [integer()],
         "ScteHls" => scte_hls(),
         "StartTag" => start_tag(),
+        "UriPathType" => list(any()),
         "Url" => [String.t() | atom()],
         "UrlEncodeChildManifest" => [boolean()]
       }
@@ -468,6 +474,7 @@ defmodule AWS.MediaPackageV2 do
         "ProgramDateTimeIntervalSeconds" => [integer()],
         "ScteHls" => scte_hls(),
         "StartTag" => start_tag(),
+        "UriPathType" => list(any()),
         "Url" => [String.t() | atom()],
         "UrlEncodeChildManifest" => [boolean()]
       }
@@ -924,6 +931,7 @@ defmodule AWS.MediaPackageV2 do
         "SegmentTemplateFormat" => list(any()),
         "SubtitleConfiguration" => dash_subtitle_configuration(),
         "SuggestedPresentationDelaySeconds" => [integer()],
+        "UriPathType" => list(any()),
         "Url" => [String.t() | atom()],
         "UtcTiming" => dash_utc_timing()
       }
@@ -1037,7 +1045,8 @@ defmodule AWS.MediaPackageV2 do
   ## Example:
 
       scte_dash() :: %{
-        "AdMarkerDash" => list(any())
+        "AdMarkerDash" => list(any()),
+        "ScteInManifests" => list(any())
       }
 
   """
@@ -1095,7 +1104,8 @@ defmodule AWS.MediaPackageV2 do
   ## Example:
 
       scte_hls() :: %{
-        "AdMarkerHls" => list(any())
+        "AdMarkerHls" => list(any()),
+        "ScteInManifests" => list(any())
       }
 
   """
@@ -1238,6 +1248,7 @@ defmodule AWS.MediaPackageV2 do
   ## Example:
 
       scte() :: %{
+        "CustomAdTypes" => list(list(any())()),
         "ScteFilter" => list(list(any())()),
         "ScteInSegments" => list(any())
       }
@@ -1362,7 +1373,8 @@ defmodule AWS.MediaPackageV2 do
         "LowLatencyHlsManifests" => list(list_low_latency_hls_manifest_configuration()),
         "ModifiedAt" => [non_neg_integer()],
         "MssManifests" => list(list_mss_manifest_configuration()),
-        "OriginEndpointName" => String.t() | atom()
+        "OriginEndpointName" => String.t() | atom(),
+        "UriSeparator" => list(any())
       }
 
   """
@@ -1421,6 +1433,7 @@ defmodule AWS.MediaPackageV2 do
         "ProgramDateTimeIntervalSeconds" => [integer()],
         "ScteHls" => scte_hls(),
         "StartTag" => start_tag(),
+        "UriPathType" => list(any()),
         "UrlEncodeChildManifest" => [boolean()]
       }
 
@@ -1479,7 +1492,8 @@ defmodule AWS.MediaPackageV2 do
         "OriginEndpointName" => String.t() | atom(),
         "Segment" => segment(),
         "StartoverWindowSeconds" => [integer()],
-        "Tags" => map()
+        "Tags" => map(),
+        "UriSeparator" => list(any())
       }
 
   """
@@ -1558,7 +1572,8 @@ defmodule AWS.MediaPackageV2 do
         "ResetAt" => [non_neg_integer()],
         "Segment" => segment(),
         "StartoverWindowSeconds" => [integer()],
-        "Tags" => map()
+        "Tags" => map(),
+        "UriSeparator" => list(any())
       }
 
   """

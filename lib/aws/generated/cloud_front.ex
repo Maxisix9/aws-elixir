@@ -432,6 +432,17 @@ defmodule AWS.CloudFront do
 
   ## Example:
 
+      cache_tag_config() :: %{
+        "HeaderName" => String.t() | atom()
+      }
+
+  """
+  @type cache_tag_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       too_many_invalidations_in_progress() :: %{
         "Message" => String.t() | atom()
       }
@@ -3008,6 +3019,7 @@ defmodule AWS.CloudFront do
         "Aliases" => aliases(),
         "AnycastIpListId" => String.t() | atom(),
         "CacheBehaviors" => cache_behaviors(),
+        "CacheTagConfig" => cache_tag_config(),
         "CallerReference" => String.t() | atom(),
         "Comment" => String.t() | atom(),
         "ConnectionFunctionAssociation" => connection_function_association(),

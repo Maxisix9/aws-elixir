@@ -61,9 +61,9 @@ defmodule AWS.BedrockAgentCoreControl do
         optional("kmsKeyArn") => String.t() | atom(),
         optional("policyEngineConfiguration") => gateway_policy_engine_configuration(),
         optional("protocolConfiguration") => list(),
+        optional("protocolType") => list(any()),
         required("authorizerType") => list(any()),
         required("name") => String.t() | atom(),
-        required("protocolType") => list(any()),
         required("roleArn") => String.t() | atom()
       }
 
@@ -80,6 +80,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type lambda_interceptor_configuration() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      iam_principal() :: %{
+        "arn" => String.t() | atom(),
+        "operator" => list(any())
+      }
+
+  """
+  @type iam_principal() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -208,6 +220,15 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type harness_agent_core_memory_configuration() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      delete_configuration_bundle_request() :: %{}
+
+  """
+  @type delete_configuration_bundle_request() :: %{}
 
   @typedoc """
 
@@ -375,6 +396,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      configuration_bundle_reference() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleVersion" => [String.t() | atom()]
+      }
+
+  """
+  @type configuration_bundle_reference() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       browser_summary() :: %{
         "browserArn" => String.t() | atom(),
         "browserId" => String.t() | atom(),
@@ -414,6 +447,26 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type memory_summary() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      gateway_rule_detail() :: %{
+        "actions" => list(list()),
+        "conditions" => list(list()),
+        "createdAt" => non_neg_integer(),
+        "description" => String.t() | atom(),
+        "gatewayArn" => String.t() | atom(),
+        "priority" => integer(),
+        "ruleId" => String.t() | atom(),
+        "status" => list(any()),
+        "system" => system_managed_block(),
+        "updatedAt" => non_neg_integer()
+      }
+
+  """
+  @type gateway_rule_detail() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -543,10 +596,12 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
-      get_evaluator_request() :: %{}
+      get_evaluator_request() :: %{
+        optional("includedData") => list(any())
+      }
 
   """
-  @type get_evaluator_request() :: %{}
+  @type get_evaluator_request() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -609,6 +664,17 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type schema_definition() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      match_paths() :: %{
+        "anyOf" => list(String.t() | atom())
+      }
+
+  """
+  @type match_paths() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -823,6 +889,7 @@ defmodule AWS.BedrockAgentCoreControl do
         optional("clientToken") => String.t() | atom(),
         optional("description") => String.t() | atom(),
         optional("evaluatorConfig") => list(),
+        optional("kmsKeyArn") => String.t() | atom(),
         optional("level") => list(any())
       }
 
@@ -928,6 +995,17 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      weighted_route() :: %{
+        "trafficSplit" => list(target_traffic_split_entry())
+      }
+
+  """
+  @type weighted_route() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       lifecycle_configuration() :: %{
         "idleRuntimeSessionTimeout" => [integer()],
         "maxLifetime" => [integer()]
@@ -1025,6 +1103,20 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type get_registry_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
+      update_gateway_rule_request() :: %{
+        optional("actions") => list(list()),
+        optional("conditions") => list(list()),
+        optional("description") => String.t() | atom(),
+        optional("priority") => integer()
+      }
+
+  """
+  @type update_gateway_rule_request() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1381,6 +1473,7 @@ defmodule AWS.BedrockAgentCoreControl do
         "name" => String.t() | atom(),
         "privateEndpoint" => list(),
         "privateEndpointManagedResources" => list(managed_resource_details()),
+        "protocolType" => list(any()),
         "status" => list(any()),
         "statusReasons" => list(String.t() | atom()),
         "targetConfiguration" => list(),
@@ -1601,6 +1694,21 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type delete_policy_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      create_gateway_rule_request() :: %{
+        optional("clientToken") => String.t() | atom(),
+        optional("conditions") => list(list()),
+        optional("description") => String.t() | atom(),
+        required("actions") => list(list()),
+        required("priority") => integer()
+      }
+
+  """
+  @type create_gateway_rule_request() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1875,6 +1983,7 @@ defmodule AWS.BedrockAgentCoreControl do
         "name" => String.t() | atom(),
         "privateEndpoint" => list(),
         "privateEndpointManagedResources" => list(managed_resource_details()),
+        "protocolType" => list(any()),
         "status" => list(any()),
         "statusReasons" => list(String.t() | atom()),
         "targetConfiguration" => list(),
@@ -1926,6 +2035,25 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type get_policy_engine_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
+      get_configuration_bundle_response() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleId" => String.t() | atom(),
+        "bundleName" => String.t() | atom(),
+        "components" => map(),
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "lineageMetadata" => version_lineage_metadata(),
+        "updatedAt" => [non_neg_integer()],
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type get_configuration_bundle_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2010,6 +2138,36 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type delete_evaluator_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
+      update_configuration_bundle_request() :: %{
+        optional("branchName") => String.t() | atom(),
+        optional("bundleName") => String.t() | atom(),
+        optional("clientToken") => String.t() | atom(),
+        optional("commitMessage") => [String.t() | atom()],
+        optional("components") => map(),
+        optional("createdBy") => version_created_by_source(),
+        optional("description") => String.t() | atom(),
+        optional("parentVersionIds") => list(String.t() | atom())
+      }
+
+  """
+  @type update_configuration_bundle_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      version_created_by_source() :: %{
+        "arn" => [String.t() | atom()],
+        "name" => [String.t() | atom()]
+      }
+
+  """
+  @type version_created_by_source() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2104,6 +2262,25 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type harness_summary() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      create_gateway_rule_response() :: %{
+        "actions" => list(list()),
+        "conditions" => list(list()),
+        "createdAt" => non_neg_integer(),
+        "description" => String.t() | atom(),
+        "gatewayArn" => String.t() | atom(),
+        "priority" => integer(),
+        "ruleId" => String.t() | atom(),
+        "status" => list(any()),
+        "system" => system_managed_block()
+      }
+
+  """
+  @type create_gateway_rule_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2214,6 +2391,20 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      version_lineage_metadata() :: %{
+        "branchName" => String.t() | atom(),
+        "commitMessage" => [String.t() | atom()],
+        "createdBy" => version_created_by_source(),
+        "parentVersionIds" => list(String.t() | atom())
+      }
+
+  """
+  @type version_lineage_metadata() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       throttled_exception() :: %{
         "message" => [String.t() | atom()]
       }
@@ -2232,6 +2423,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type create_registry_record_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      delete_gateway_rule_response() :: %{
+        "ruleId" => String.t() | atom(),
+        "status" => list(any())
+      }
+
+  """
+  @type delete_gateway_rule_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2299,6 +2502,7 @@ defmodule AWS.BedrockAgentCoreControl do
         "name" => String.t() | atom(),
         "privateEndpoint" => list(),
         "privateEndpointManagedResources" => list(managed_resource_details()),
+        "protocolType" => list(any()),
         "status" => list(any()),
         "statusReasons" => list(String.t() | atom()),
         "targetConfiguration" => list(),
@@ -2444,6 +2648,21 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      target_traffic_split_entry() :: %{
+        "description" => [String.t() | atom()],
+        "metadata" => map(),
+        "name" => [String.t() | atom()],
+        "targetName" => String.t() | atom(),
+        "weight" => [integer()]
+      }
+
+  """
+  @type target_traffic_split_entry() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       registry_record_summary() :: %{
         "createdAt" => non_neg_integer(),
         "description" => String.t() | atom(),
@@ -2521,6 +2740,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type episodic_reflection_override() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      runtime_target_configuration() :: %{
+        "arn" => String.t() | atom(),
+        "qualifier" => String.t() | atom()
+      }
+
+  """
+  @type runtime_target_configuration() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2678,6 +2909,21 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      traffic_split_entry() :: %{
+        "configurationBundle" => configuration_bundle_reference(),
+        "description" => [String.t() | atom()],
+        "metadata" => map(),
+        "name" => [String.t() | atom()],
+        "weight" => [integer()]
+      }
+
+  """
+  @type traffic_split_entry() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       workload_identity_type() :: %{
         "name" => String.t() | atom(),
         "workloadIdentityArn" => String.t() | atom()
@@ -2752,6 +2998,20 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type get_agent_runtime_endpoint_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
+      configuration_bundle_summary() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleId" => String.t() | atom(),
+        "bundleName" => String.t() | atom(),
+        "description" => String.t() | atom()
+      }
+
+  """
+  @type configuration_bundle_summary() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -3067,6 +3327,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      list_gateway_rules_response() :: %{
+        "gatewayRules" => list(gateway_rule_detail()),
+        "nextToken" => String.t() | atom()
+      }
+
+  """
+  @type list_gateway_rules_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       token_based_trigger() :: %{
         "tokenCount" => [integer()]
       }
@@ -3109,6 +3381,15 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type update_registry_record_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      get_gateway_rule_request() :: %{}
+
+  """
+  @type get_gateway_rule_request() :: %{}
 
   @typedoc """
 
@@ -3229,6 +3510,20 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type list_policy_generations_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      update_configuration_bundle_response() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleId" => String.t() | atom(),
+        "updatedAt" => [non_neg_integer()],
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type update_configuration_bundle_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -3490,12 +3785,47 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      update_gateway_rule_response() :: %{
+        "actions" => list(list()),
+        "conditions" => list(list()),
+        "createdAt" => non_neg_integer(),
+        "description" => String.t() | atom(),
+        "gatewayArn" => String.t() | atom(),
+        "priority" => integer(),
+        "ruleId" => String.t() | atom(),
+        "status" => list(any()),
+        "system" => system_managed_block(),
+        "updatedAt" => non_neg_integer()
+      }
+
+  """
+  @type update_gateway_rule_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       update_memory_output() :: %{
         "memory" => memory()
       }
 
   """
   @type update_memory_output() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      configuration_bundle_version_summary() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleId" => String.t() | atom(),
+        "lineageMetadata" => version_lineage_metadata(),
+        "versionCreatedAt" => [non_neg_integer()],
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type configuration_bundle_version_summary() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -3739,6 +4069,25 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      get_configuration_bundle_version_response() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleId" => String.t() | atom(),
+        "bundleName" => String.t() | atom(),
+        "components" => map(),
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "lineageMetadata" => version_lineage_metadata(),
+        "versionCreatedAt" => [non_neg_integer()],
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type get_configuration_bundle_version_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       delete_policy_request() :: %{}
 
   """
@@ -3880,10 +4229,10 @@ defmodule AWS.BedrockAgentCoreControl do
         optional("kmsKeyArn") => String.t() | atom(),
         optional("policyEngineConfiguration") => gateway_policy_engine_configuration(),
         optional("protocolConfiguration") => list(),
+        optional("protocolType") => list(any()),
         optional("tags") => map(),
         required("authorizerType") => list(any()),
         required("name") => String.t() | atom(),
-        required("protocolType") => list(any()),
         required("roleArn") => String.t() | atom()
       }
 
@@ -3917,6 +4266,7 @@ defmodule AWS.BedrockAgentCoreControl do
         "name" => String.t() | atom(),
         "privateEndpoint" => list(),
         "privateEndpointManagedResources" => list(managed_resource_details()),
+        "protocolType" => list(any()),
         "status" => list(any()),
         "statusReasons" => list(String.t() | atom()),
         "targetConfiguration" => list(),
@@ -4007,6 +4357,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      list_configuration_bundles_request() :: %{
+        optional("maxResults") => [integer()],
+        optional("nextToken") => [String.t() | atom()]
+      }
+
+  """
+  @type list_configuration_bundles_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       delete_browser_profile_request() :: %{
         optional("clientToken") => String.t() | atom()
       }
@@ -4048,6 +4410,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type message_based_trigger() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      list_configuration_bundle_versions_response() :: %{
+        "nextToken" => [String.t() | atom()],
+        "versions" => list(configuration_bundle_version_summary())
+      }
+
+  """
+  @type list_configuration_bundle_versions_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -4253,6 +4627,7 @@ defmodule AWS.BedrockAgentCoreControl do
         "evaluatorConfig" => list(),
         "evaluatorId" => String.t() | atom(),
         "evaluatorName" => String.t() | atom(),
+        "kmsKeyArn" => String.t() | atom(),
         "level" => list(any()),
         "lockedForModification" => [boolean()],
         "status" => list(any()),
@@ -4576,6 +4951,17 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      component_configuration() :: %{
+        "configuration" => [any()]
+      }
+
+  """
+  @type component_configuration() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       update_evaluator_response() :: %{
         "evaluatorArn" => String.t() | atom(),
         "evaluatorId" => String.t() | atom(),
@@ -4681,6 +5067,26 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type list_tags_for_resource_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
+      get_gateway_rule_response() :: %{
+        "actions" => list(list()),
+        "conditions" => list(list()),
+        "createdAt" => non_neg_integer(),
+        "description" => String.t() | atom(),
+        "gatewayArn" => String.t() | atom(),
+        "priority" => integer(),
+        "ruleId" => String.t() | atom(),
+        "status" => list(any()),
+        "system" => system_managed_block(),
+        "updatedAt" => non_neg_integer()
+      }
+
+  """
+  @type get_gateway_rule_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -4792,6 +5198,15 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      delete_gateway_rule_request() :: %{}
+
+  """
+  @type delete_gateway_rule_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
       list_oauth2_credential_providers_request() :: %{
         optional("maxResults") => [integer()],
         optional("nextToken") => [String.t() | atom()]
@@ -4799,6 +5214,29 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type list_oauth2_credential_providers_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      weighted_override() :: %{
+        "trafficSplit" => list(traffic_split_entry())
+      }
+
+  """
+  @type weighted_override() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      delete_configuration_bundle_response() :: %{
+        "bundleId" => String.t() | atom(),
+        "status" => list(any())
+      }
+
+  """
+  @type delete_configuration_bundle_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -4827,6 +5265,15 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      get_configuration_bundle_version_request() :: %{}
+
+  """
+  @type get_configuration_bundle_version_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
       harness_summarization_configuration() :: %{
         "preserveRecentMessages" => [integer()],
         "summarizationSystemPrompt" => [String.t() | atom()],
@@ -4835,6 +5282,19 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type harness_summarization_configuration() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      list_configuration_bundle_versions_request() :: %{
+        optional("filter") => version_filter(),
+        optional("maxResults") => [integer()],
+        optional("nextToken") => [String.t() | atom()]
+      }
+
+  """
+  @type list_configuration_bundle_versions_request() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -4910,6 +5370,17 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      match_principals() :: %{
+        "anyOf" => list(list())
+      }
+
+  """
+  @type match_principals() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       agent_runtime() :: %{
         "agentRuntimeArn" => String.t() | atom(),
         "agentRuntimeId" => String.t() | atom(),
@@ -4939,6 +5410,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      list_gateway_rules_request() :: %{
+        optional("maxResults") => integer(),
+        optional("nextToken") => String.t() | atom()
+      }
+
+  """
+  @type list_gateway_rules_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       protocol_configuration() :: %{
         "serverProtocol" => list(any())
       }
@@ -4957,6 +5440,19 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type agent_card_definition() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      version_filter() :: %{
+        "branchName" => String.t() | atom(),
+        "createdByName" => [String.t() | atom()],
+        "latestPerBranch" => [boolean()]
+      }
+
+  """
+  @type version_filter() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -5086,6 +5582,17 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      system_managed_block() :: %{
+        "managedBy" => [String.t() | atom()]
+      }
+
+  """
+  @type system_managed_block() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       policy_engine() :: %{
         "createdAt" => non_neg_integer(),
         "description" => String.t() | atom(),
@@ -5111,6 +5618,17 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type skill_md_definition() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      static_route() :: %{
+        "targetName" => String.t() | atom()
+      }
+
+  """
+  @type static_route() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -5196,6 +5714,20 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      create_configuration_bundle_response() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleId" => String.t() | atom(),
+        "createdAt" => [non_neg_integer()],
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type create_configuration_bundle_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       list_agent_runtime_endpoints_request() :: %{
         optional("maxResults") => integer(),
         optional("nextToken") => String.t() | atom()
@@ -5268,6 +5800,7 @@ defmodule AWS.BedrockAgentCoreControl do
       create_evaluator_request() :: %{
         optional("clientToken") => String.t() | atom(),
         optional("description") => String.t() | atom(),
+        optional("kmsKeyArn") => String.t() | atom(),
         optional("tags") => map(),
         required("evaluatorConfig") => list(),
         required("evaluatorName") => String.t() | atom(),
@@ -5503,6 +6036,35 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      get_configuration_bundle_request() :: %{
+        optional("branchName") => String.t() | atom()
+      }
+
+  """
+  @type get_configuration_bundle_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      create_configuration_bundle_request() :: %{
+        optional("branchName") => String.t() | atom(),
+        optional("clientToken") => String.t() | atom(),
+        optional("commitMessage") => [String.t() | atom()],
+        optional("createdBy") => version_created_by_source(),
+        optional("description") => String.t() | atom(),
+        optional("tags") => map(),
+        required("bundleName") => String.t() | atom(),
+        required("components") => map()
+      }
+
+  """
+  @type create_configuration_bundle_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       harness_agent_core_code_interpreter_config() :: %{
         "codeInterpreterArn" => String.t() | atom()
       }
@@ -5521,6 +6083,7 @@ defmodule AWS.BedrockAgentCoreControl do
         "evaluatorId" => String.t() | atom(),
         "evaluatorName" => String.t() | atom(),
         "evaluatorType" => list(any()),
+        "kmsKeyArn" => String.t() | atom(),
         "level" => list(any()),
         "lockedForModification" => [boolean()],
         "status" => list(any()),
@@ -5555,6 +6118,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   """
   @type list_api_key_credential_providers_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      list_configuration_bundles_response() :: %{
+        "bundles" => list(configuration_bundle_summary()),
+        "nextToken" => [String.t() | atom()]
+      }
+
+  """
+  @type list_configuration_bundles_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -5673,6 +6248,18 @@ defmodule AWS.BedrockAgentCoreControl do
 
   ## Example:
 
+      static_override() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleVersion" => [String.t() | atom()]
+      }
+
+  """
+  @type static_override() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       gateway_interceptor_configuration() :: %{
         "inputConfiguration" => interceptor_input_configuration(),
         "interceptionPoints" => list(list(any())()),
@@ -5772,6 +6359,14 @@ defmodule AWS.BedrockAgentCoreControl do
           | service_quota_exceeded_exception()
           | conflict_exception()
 
+  @type create_configuration_bundle_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | service_quota_exceeded_exception()
+          | conflict_exception()
+
   @type create_evaluator_errors() ::
           throttling_exception()
           | validation_exception()
@@ -5786,6 +6381,15 @@ defmodule AWS.BedrockAgentCoreControl do
           | access_denied_exception()
           | internal_server_exception()
           | service_quota_exceeded_exception()
+          | conflict_exception()
+
+  @type create_gateway_rule_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | service_quota_exceeded_exception()
+          | resource_not_found_exception()
           | conflict_exception()
 
   @type create_gateway_target_errors() ::
@@ -5925,6 +6529,14 @@ defmodule AWS.BedrockAgentCoreControl do
           | resource_not_found_exception()
           | conflict_exception()
 
+  @type delete_configuration_bundle_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+
   @type delete_evaluator_errors() ::
           throttling_exception()
           | validation_exception()
@@ -5934,6 +6546,14 @@ defmodule AWS.BedrockAgentCoreControl do
           | conflict_exception()
 
   @type delete_gateway_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+
+  @type delete_gateway_rule_errors() ::
           throttling_exception()
           | validation_exception()
           | access_denied_exception()
@@ -6073,6 +6693,20 @@ defmodule AWS.BedrockAgentCoreControl do
           | service_quota_exceeded_exception()
           | resource_not_found_exception()
 
+  @type get_configuration_bundle_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+
+  @type get_configuration_bundle_version_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+
   @type get_evaluator_errors() ::
           throttling_exception()
           | validation_exception()
@@ -6081,6 +6715,13 @@ defmodule AWS.BedrockAgentCoreControl do
           | resource_not_found_exception()
 
   @type get_gateway_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+
+  @type get_gateway_rule_errors() ::
           throttling_exception()
           | validation_exception()
           | access_denied_exception()
@@ -6228,11 +6869,31 @@ defmodule AWS.BedrockAgentCoreControl do
           | access_denied_exception()
           | internal_server_exception()
 
+  @type list_configuration_bundle_versions_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+
+  @type list_configuration_bundles_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+
   @type list_evaluators_errors() ::
           throttling_exception()
           | validation_exception()
           | access_denied_exception()
           | internal_server_exception()
+
+  @type list_gateway_rules_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
 
   @type list_gateway_targets_errors() ::
           throttling_exception()
@@ -6416,6 +7077,14 @@ defmodule AWS.BedrockAgentCoreControl do
           | decryption_failure()
           | unauthorized_exception()
 
+  @type update_configuration_bundle_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+
   @type update_evaluator_errors() ::
           throttling_exception()
           | validation_exception()
@@ -6431,6 +7100,14 @@ defmodule AWS.BedrockAgentCoreControl do
           | access_denied_exception()
           | internal_server_exception()
           | service_quota_exceeded_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+
+  @type update_gateway_rule_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
           | resource_not_found_exception()
           | conflict_exception()
 
@@ -6734,6 +7411,38 @@ defmodule AWS.BedrockAgentCoreControl do
   end
 
   @doc """
+  Creates a new configuration bundle resource.
+
+  A configuration bundle stores versioned component configurations for agent
+  evaluation workflows.
+  """
+  @spec create_configuration_bundle(map(), create_configuration_bundle_request(), list()) ::
+          {:ok, create_configuration_bundle_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, create_configuration_bundle_errors()}
+  def create_configuration_bundle(%Client{} = client, input, options \\ []) do
+    url_path = "/configuration-bundles/create"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      201
+    )
+  end
+
+  @doc """
   Creates a custom evaluator for agent quality assessment.
 
   Custom evaluators can use either LLM-as-a-Judge configurations with user-defined
@@ -6783,6 +7492,39 @@ defmodule AWS.BedrockAgentCoreControl do
           | {:error, create_gateway_errors()}
   def create_gateway(%Client{} = client, input, options \\ []) do
     url_path = "/gateways/"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
+  Creates a rule for a gateway.
+
+  Rules define conditions and actions that control how requests are routed and
+  processed through the gateway, including principal-based access control and
+  path-based routing.
+  """
+  @spec create_gateway_rule(map(), String.t() | atom(), create_gateway_rule_request(), list()) ::
+          {:ok, create_gateway_rule_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, create_gateway_rule_errors()}
+  def create_gateway_rule(%Client{} = client, gateway_identifier, input, options \\ []) do
+    url_path = "/gateways/#{AWS.Util.encode_uri(gateway_identifier)}/rules"
     headers = []
     custom_headers = []
     query_params = []
@@ -7368,6 +8110,40 @@ defmodule AWS.BedrockAgentCoreControl do
   end
 
   @doc """
+  Deletes a configuration bundle and all of its versions.
+  """
+  @spec delete_configuration_bundle(
+          map(),
+          String.t() | atom(),
+          delete_configuration_bundle_request(),
+          list()
+        ) ::
+          {:ok, delete_configuration_bundle_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, delete_configuration_bundle_errors()}
+  def delete_configuration_bundle(%Client{} = client, bundle_id, input, options \\ []) do
+    url_path = "/configuration-bundles/#{AWS.Util.encode_uri(bundle_id)}"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :delete,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
   Deletes a custom evaluator.
 
   Builtin evaluators cannot be deleted. The evaluator must not be referenced by
@@ -7409,6 +8185,43 @@ defmodule AWS.BedrockAgentCoreControl do
           | {:error, delete_gateway_errors()}
   def delete_gateway(%Client{} = client, gateway_identifier, input, options \\ []) do
     url_path = "/gateways/#{AWS.Util.encode_uri(gateway_identifier)}/"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :delete,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
+  Deletes a gateway rule.
+  """
+  @spec delete_gateway_rule(
+          map(),
+          String.t() | atom(),
+          String.t() | atom(),
+          delete_gateway_rule_request(),
+          list()
+        ) ::
+          {:ok, delete_gateway_rule_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, delete_gateway_rule_errors()}
+  def delete_gateway_rule(%Client{} = client, gateway_identifier, rule_id, input, options \\ []) do
+    url_path =
+      "/gateways/#{AWS.Util.encode_uri(gateway_identifier)}/rules/#{AWS.Util.encode_uri(rule_id)}"
+
     headers = []
     custom_headers = []
     query_params = []
@@ -7967,20 +8780,75 @@ defmodule AWS.BedrockAgentCoreControl do
   end
 
   @doc """
+  Gets the latest version of a configuration bundle.
+
+  By default, returns the latest version on the mainline branch. Use
+  `GetConfigurationBundleVersion` to retrieve a specific historical version.
+  """
+  @spec get_configuration_bundle(map(), String.t() | atom(), String.t() | atom() | nil, list()) ::
+          {:ok, get_configuration_bundle_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, get_configuration_bundle_errors()}
+  def get_configuration_bundle(%Client{} = client, bundle_id, branch_name \\ nil, options \\ []) do
+    url_path = "/configuration-bundles/#{AWS.Util.encode_uri(bundle_id)}"
+    headers = []
+    query_params = []
+
+    query_params =
+      if !is_nil(branch_name) do
+        [{"branchName", branch_name} | query_params]
+      else
+        query_params
+      end
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
+  end
+
+  @doc """
+  Gets a specific version of a configuration bundle by its version identifier.
+  """
+  @spec get_configuration_bundle_version(map(), String.t() | atom(), String.t() | atom(), list()) ::
+          {:ok, get_configuration_bundle_version_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, get_configuration_bundle_version_errors()}
+  def get_configuration_bundle_version(%Client{} = client, bundle_id, version_id, options \\ []) do
+    url_path =
+      "/configuration-bundles/#{AWS.Util.encode_uri(bundle_id)}/versions/#{AWS.Util.encode_uri(version_id)}"
+
+    headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
+  end
+
+  @doc """
   Retrieves detailed information about an evaluator, including its configuration,
   status, and metadata.
 
   Works with both built-in and custom evaluators.
   """
-  @spec get_evaluator(map(), String.t() | atom(), list()) ::
+  @spec get_evaluator(map(), String.t() | atom(), String.t() | atom() | nil, list()) ::
           {:ok, get_evaluator_response(), any()}
           | {:error, {:unexpected_response, any()}}
           | {:error, term()}
           | {:error, get_evaluator_errors()}
-  def get_evaluator(%Client{} = client, evaluator_id, options \\ []) do
+  def get_evaluator(%Client{} = client, evaluator_id, included_data \\ nil, options \\ []) do
     url_path = "/evaluators/#{AWS.Util.encode_uri(evaluator_id)}"
     headers = []
     query_params = []
+
+    query_params =
+      if !is_nil(included_data) do
+        [{"includedData", included_data} | query_params]
+      else
+        query_params
+      end
 
     meta = metadata()
 
@@ -7997,6 +8865,26 @@ defmodule AWS.BedrockAgentCoreControl do
           | {:error, get_gateway_errors()}
   def get_gateway(%Client{} = client, gateway_identifier, options \\ []) do
     url_path = "/gateways/#{AWS.Util.encode_uri(gateway_identifier)}/"
+    headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
+  end
+
+  @doc """
+  Retrieves detailed information about a specific gateway rule.
+  """
+  @spec get_gateway_rule(map(), String.t() | atom(), String.t() | atom(), list()) ::
+          {:ok, get_gateway_rule_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, get_gateway_rule_errors()}
+  def get_gateway_rule(%Client{} = client, gateway_identifier, rule_id, options \\ []) do
+    url_path =
+      "/gateways/#{AWS.Util.encode_uri(gateway_identifier)}/rules/#{AWS.Util.encode_uri(rule_id)}"
+
     headers = []
     query_params = []
 
@@ -8565,6 +9453,82 @@ defmodule AWS.BedrockAgentCoreControl do
   end
 
   @doc """
+  Lists all versions of a configuration bundle, with optional filtering by branch
+  name or creation source.
+  """
+  @spec list_configuration_bundle_versions(
+          map(),
+          String.t() | atom(),
+          list_configuration_bundle_versions_request(),
+          list()
+        ) ::
+          {:ok, list_configuration_bundle_versions_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, list_configuration_bundle_versions_errors()}
+  def list_configuration_bundle_versions(%Client{} = client, bundle_id, input, options \\ []) do
+    url_path = "/configuration-bundles/#{AWS.Util.encode_uri(bundle_id)}/versions"
+    headers = []
+    custom_headers = []
+
+    {query_params, input} =
+      [
+        {"maxResults", "maxResults"},
+        {"nextToken", "nextToken"}
+      ]
+      |> Request.build_params(input)
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      200
+    )
+  end
+
+  @doc """
+  Lists all configuration bundles in the account.
+  """
+  @spec list_configuration_bundles(map(), list_configuration_bundles_request(), list()) ::
+          {:ok, list_configuration_bundles_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, list_configuration_bundles_errors()}
+  def list_configuration_bundles(%Client{} = client, input, options \\ []) do
+    url_path = "/configuration-bundles"
+    headers = []
+    custom_headers = []
+
+    {query_params, input} =
+      [
+        {"maxResults", "maxResults"},
+        {"nextToken", "nextToken"}
+      ]
+      |> Request.build_params(input)
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      200
+    )
+  end
+
+  @doc """
   Lists all available evaluators, including both builtin evaluators provided by
   the service and custom evaluators created by the user.
   """
@@ -8598,6 +9562,50 @@ defmodule AWS.BedrockAgentCoreControl do
       options,
       200
     )
+  end
+
+  @doc """
+  Lists all rules for a gateway.
+  """
+  @spec list_gateway_rules(
+          map(),
+          String.t() | atom(),
+          String.t() | atom() | nil,
+          String.t() | atom() | nil,
+          list()
+        ) ::
+          {:ok, list_gateway_rules_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, list_gateway_rules_errors()}
+  def list_gateway_rules(
+        %Client{} = client,
+        gateway_identifier,
+        max_results \\ nil,
+        next_token \\ nil,
+        options \\ []
+      ) do
+    url_path = "/gateways/#{AWS.Util.encode_uri(gateway_identifier)}/rules"
+    headers = []
+    query_params = []
+
+    query_params =
+      if !is_nil(next_token) do
+        [{"nextToken", next_token} | query_params]
+      else
+        query_params
+      end
+
+    query_params =
+      if !is_nil(max_results) do
+        [{"maxResults", max_results} | query_params]
+      else
+        query_params
+      end
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
   end
 
   @doc """
@@ -9560,6 +10568,43 @@ defmodule AWS.BedrockAgentCoreControl do
   end
 
   @doc """
+  Updates a configuration bundle by creating a new version with the specified
+  changes.
+
+  Each update creates a new version in the version history.
+  """
+  @spec update_configuration_bundle(
+          map(),
+          String.t() | atom(),
+          update_configuration_bundle_request(),
+          list()
+        ) ::
+          {:ok, update_configuration_bundle_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, update_configuration_bundle_errors()}
+  def update_configuration_bundle(%Client{} = client, bundle_id, input, options \\ []) do
+    url_path = "/configuration-bundles/#{AWS.Util.encode_uri(bundle_id)}"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :put,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      200
+    )
+  end
+
+  @doc """
   Updates a custom evaluator's configuration, description, or evaluation level.
 
   Built-in evaluators cannot be updated. The evaluator must not be locked for
@@ -9611,6 +10656,43 @@ defmodule AWS.BedrockAgentCoreControl do
       client,
       meta,
       :put,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
+  Updates a gateway rule's priority, conditions, actions, or description.
+  """
+  @spec update_gateway_rule(
+          map(),
+          String.t() | atom(),
+          String.t() | atom(),
+          update_gateway_rule_request(),
+          list()
+        ) ::
+          {:ok, update_gateway_rule_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, update_gateway_rule_errors()}
+  def update_gateway_rule(%Client{} = client, gateway_identifier, rule_id, input, options \\ []) do
+    url_path =
+      "/gateways/#{AWS.Util.encode_uri(gateway_identifier)}/rules/#{AWS.Util.encode_uri(rule_id)}"
+
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :patch,
       url_path,
       query_params,
       custom_headers ++ headers,

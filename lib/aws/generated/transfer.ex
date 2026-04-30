@@ -4181,7 +4181,7 @@ defmodule AWS.Transfer do
   all of the items contained in the remote directory or not. If your `Truncated`
   output value is true, you can increase the value provided in the optional
   `max-items` input attribute to be able to list more items (up to the maximum
-  allowed list size of 10,000 items).
+  allowed list size of 200,000 items).
   """
   @spec start_directory_listing(map(), start_directory_listing_request(), list()) ::
           {:ok, start_directory_listing_response(), any()}

@@ -436,7 +436,8 @@ defmodule AWS.Account do
       get_account_information_response() :: %{
         "AccountCreatedDate" => non_neg_integer(),
         "AccountId" => String.t() | atom(),
-        "AccountName" => String.t() | atom()
+        "AccountName" => String.t() | atom(),
+        "AccountState" => String.t() | atom()
       }
 
   """
@@ -691,7 +692,7 @@ defmodule AWS.Account do
 
   @doc """
   Retrieves information about the specified account including its account name,
-  account ID, and account creation date and time.
+  account ID, account creation date and time, and account state.
 
   To use this API, an IAM user or role must have the
   `account:GetAccountInformation` IAM permission.

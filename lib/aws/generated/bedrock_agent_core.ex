@@ -40,6 +40,18 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      tool_description_output() :: %{
+        "recommendedToolDescription" => String.t() | atom(),
+        "toolName" => String.t() | atom()
+      }
+
+  """
+  @type tool_description_output() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       harness_remote_mcp_config() :: %{
         "headers" => map(),
         "url" => String.t() | atom()
@@ -70,6 +82,17 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type live_view_stream() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      recommendation_evaluator_reference() :: %{
+        "evaluatorArn" => String.t() | atom()
+      }
+
+  """
+  @type recommendation_evaluator_reference() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -157,6 +180,15 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      stop_batch_evaluation_request() :: %{}
+
+  """
+  @type stop_batch_evaluation_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
       key_press_result() :: %{
         "error" => [String.t() | atom()],
         "status" => list(any())
@@ -176,6 +208,29 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type batch_create_memory_records_input() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      ground_truth_turn() :: %{
+        "expectedResponse" => list(),
+        "input" => list()
+      }
+
+  """
+  @type ground_truth_turn() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      recommendation_evaluation_config() :: %{
+        "evaluators" => list(recommendation_evaluator_reference())
+      }
+
+  """
+  @type recommendation_evaluation_config() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -201,6 +256,19 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type mouse_scroll_result() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      inline_ground_truth() :: %{
+        "assertions" => list(list()),
+        "expectedTrajectory" => evaluation_expected_trajectory(),
+        "turns" => list(ground_truth_turn())
+      }
+
+  """
+  @type inline_ground_truth() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -265,6 +333,18 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type invoke_code_interpreter_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      per_variant_online_evaluation_config() :: %{
+        "name" => String.t() | atom(),
+        "onlineEvaluationConfigArn" => String.t() | atom()
+      }
+
+  """
+  @type per_variant_online_evaluation_config() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -336,6 +416,18 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type invoke_browser_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      cloud_watch_output_config() :: %{
+        "logGroupName" => [String.t() | atom()],
+        "logStreamName" => [String.t() | atom()]
+      }
+
+  """
+  @type cloud_watch_output_config() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -440,6 +532,17 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      evaluator_statistics() :: %{
+        "averageScore" => [float()]
+      }
+
+  """
+  @type evaluator_statistics() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       invoke_agent_runtime_command_response() :: %{
         "baggage" => [String.t() | atom()],
         "contentType" => [String.t() | atom()],
@@ -467,6 +570,21 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type external_proxy() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      update_a_b_test_response() :: %{
+        "abTestArn" => String.t() | atom(),
+        "abTestId" => String.t() | atom(),
+        "executionStatus" => list(any()),
+        "status" => list(any()),
+        "updatedAt" => [non_neg_integer()]
+      }
+
+  """
+  @type update_a_b_test_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -500,6 +618,19 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      control_stats() :: %{
+        "mean" => [float()],
+        "sampleSize" => [integer()],
+        "variantName" => [String.t() | atom()]
+      }
+
+  """
+  @type control_stats() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       complete_resource_token_auth_request() :: %{
         required("sessionUri") => String.t() | atom(),
         required("userIdentifier") => list()
@@ -507,6 +638,15 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type complete_resource_token_auth_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      get_recommendation_request() :: %{}
+
+  """
+  @type get_recommendation_request() :: %{}
 
   @typedoc """
 
@@ -539,6 +679,34 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      create_a_b_test_response() :: %{
+        "abTestArn" => String.t() | atom(),
+        "abTestId" => String.t() | atom(),
+        "createdAt" => [non_neg_integer()],
+        "executionStatus" => list(any()),
+        "name" => String.t() | atom(),
+        "status" => list(any())
+      }
+
+  """
+  @type create_a_b_test_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      list_batch_evaluations_response() :: %{
+        "batchEvaluations" => list(batch_evaluation_summary()),
+        "nextToken" => [String.t() | atom()]
+      }
+
+  """
+  @type list_batch_evaluations_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       harness_agent_core_gateway_config() :: %{
         "gatewayArn" => String.t() | atom(),
         "outboundAuth" => list()
@@ -546,6 +714,21 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type harness_agent_core_gateway_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      cloud_watch_logs_trace_config() :: %{
+        "endTime" => [non_neg_integer()],
+        "logGroupArns" => list([String.t() | atom()]()),
+        "rule" => cloud_watch_logs_rule(),
+        "serviceNames" => list(String.t() | atom()),
+        "startTime" => [non_neg_integer()]
+      }
+
+  """
+  @type cloud_watch_logs_trace_config() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -586,6 +769,18 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      variant_configuration() :: %{
+        "configurationBundle" => configuration_bundle_ref(),
+        "target" => target_ref()
+      }
+
+  """
+  @type variant_configuration() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       mouse_drag_result() :: %{
         "error" => [String.t() | atom()],
         "status" => list(any())
@@ -621,6 +816,18 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      tool_description_input() :: %{
+        "toolDescription" => list(),
+        "toolName" => String.t() | atom()
+      }
+
+  """
+  @type tool_description_input() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       list_memory_extraction_jobs_output() :: %{
         "jobs" => list(extraction_job_metadata()),
         "nextToken" => String.t() | atom()
@@ -628,6 +835,15 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type list_memory_extraction_jobs_output() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      delete_a_b_test_request() :: %{}
+
+  """
+  @type delete_a_b_test_request() :: %{}
 
   @typedoc """
 
@@ -733,6 +949,19 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      delete_batch_evaluation_response() :: %{
+        "batchEvaluationArn" => String.t() | atom(),
+        "batchEvaluationId" => String.t() | atom(),
+        "status" => list(any())
+      }
+
+  """
+  @type delete_batch_evaluation_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       batch_update_memory_records_output() :: %{
         "failedRecords" => list(memory_record_output()),
         "successfulRecords" => list(memory_record_output())
@@ -799,6 +1028,30 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      session_filter_config() :: %{
+        "endTime" => [non_neg_integer()],
+        "startTime" => [non_neg_integer()]
+      }
+
+  """
+  @type session_filter_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      cloud_watch_filter_config() :: %{
+        "sessionIds" => list([String.t() | atom()]()),
+        "timeRange" => session_filter_config()
+      }
+
+  """
+  @type cloud_watch_filter_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       key_shortcut_result() :: %{
         "error" => [String.t() | atom()],
         "status" => list(any())
@@ -806,6 +1059,18 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type key_shortcut_result() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      delete_recommendation_response() :: %{
+        "recommendationId" => String.t() | atom(),
+        "status" => list(any())
+      }
+
+  """
+  @type delete_recommendation_response() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -852,6 +1117,18 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type start_browser_session_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      recommendation_result_configuration_bundle() :: %{
+        "bundleArn" => String.t() | atom(),
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type recommendation_result_configuration_bundle() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -910,6 +1187,25 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type evaluation_reference_input() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      create_a_b_test_request() :: %{
+        optional("clientToken") => String.t() | atom(),
+        optional("description") => String.t() | atom(),
+        optional("enableOnCreate") => [boolean()],
+        optional("gatewayFilter") => gateway_filter(),
+        required("evaluationConfig") => list(),
+        required("gatewayArn") => String.t() | atom(),
+        required("name") => String.t() | atom(),
+        required("roleArn") => String.t() | atom(),
+        required("variants") => list(variant())
+      }
+
+  """
+  @type create_a_b_test_request() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -982,6 +1278,21 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      start_recommendation_request() :: %{
+        optional("clientToken") => String.t() | atom(),
+        optional("description") => String.t() | atom(),
+        required("name") => String.t() | atom(),
+        required("recommendationConfig") => list(),
+        required("type") => list(any())
+      }
+
+  """
+  @type start_recommendation_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       harness_token_usage() :: %{
         "cacheReadInputTokens" => [integer()],
         "cacheWriteInputTokens" => [integer()],
@@ -1035,6 +1346,24 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      update_a_b_test_request() :: %{
+        optional("clientToken") => String.t() | atom(),
+        optional("description") => String.t() | atom(),
+        optional("evaluationConfig") => list(),
+        optional("executionStatus") => list(any()),
+        optional("gatewayFilter") => gateway_filter(),
+        optional("name") => String.t() | atom(),
+        optional("roleArn") => String.t() | atom(),
+        optional("variants") => list(variant())
+      }
+
+  """
+  @type update_a_b_test_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       get_workload_access_token_for_j_w_t_request() :: %{
         required("userToken") => String.t() | atom(),
         required("workloadName") => String.t() | atom()
@@ -1059,6 +1388,48 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      tool_description_recommendation_result() :: %{
+        "configurationBundle" => recommendation_result_configuration_bundle(),
+        "errorCode" => String.t() | atom(),
+        "errorMessage" => String.t() | atom(),
+        "tools" => list(tool_description_output())
+      }
+
+  """
+  @type tool_description_recommendation_result() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      a_b_test_summary() :: %{
+        "abTestArn" => String.t() | atom(),
+        "abTestId" => String.t() | atom(),
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "executionStatus" => list(any()),
+        "gatewayArn" => String.t() | atom(),
+        "name" => String.t() | atom(),
+        "status" => list(any()),
+        "updatedAt" => [non_neg_integer()]
+      }
+
+  """
+  @type a_b_test_summary() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      delete_recommendation_request() :: %{}
+
+  """
+  @type delete_recommendation_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
       registry_record_summary() :: %{
         "createdAt" => non_neg_integer(),
         "description" => String.t() | atom(),
@@ -1075,6 +1446,32 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type registry_record_summary() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      evaluator_metric() :: %{
+        "controlStats" => control_stats(),
+        "evaluatorArn" => [String.t() | atom()],
+        "variantResults" => list(variant_result())
+      }
+
+  """
+  @type evaluator_metric() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      cloud_watch_logs_filter() :: %{
+        "key" => [String.t() | atom()],
+        "operator" => list(any()),
+        "value" => list()
+      }
+
+  """
+  @type cloud_watch_logs_filter() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1273,6 +1670,20 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      stop_batch_evaluation_response() :: %{
+        "batchEvaluationArn" => String.t() | atom(),
+        "batchEvaluationId" => String.t() | atom(),
+        "description" => String.t() | atom(),
+        "status" => list(any())
+      }
+
+  """
+  @type stop_batch_evaluation_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       message_metadata() :: %{
         "eventId" => [String.t() | atom()],
         "messageIndex" => [integer()]
@@ -1354,12 +1765,35 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      gateway_filter() :: %{
+        "targetPaths" => list(String.t() | atom())
+      }
+
+  """
+  @type gateway_filter() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       get_code_interpreter_session_request() :: %{
         required("sessionId") => String.t() | atom()
       }
 
   """
   @type get_code_interpreter_session_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      configuration_bundle_tool_entry() :: %{
+        "toolDescriptionJsonPath" => [String.t() | atom()],
+        "toolName" => String.t() | atom()
+      }
+
+  """
+  @type configuration_bundle_tool_entry() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1497,6 +1931,48 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      cloud_watch_logs_source() :: %{
+        "filterConfig" => cloud_watch_filter_config(),
+        "logGroupNames" => list([String.t() | atom()]()),
+        "serviceNames" => list([String.t() | atom()]())
+      }
+
+  """
+  @type cloud_watch_logs_source() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      get_a_b_test_response() :: %{
+        "abTestArn" => String.t() | atom(),
+        "abTestId" => String.t() | atom(),
+        "createdAt" => [non_neg_integer()],
+        "currentRunId" => [String.t() | atom()],
+        "description" => String.t() | atom(),
+        "errorDetails" => list([String.t() | atom()]()),
+        "evaluationConfig" => list(),
+        "executionStatus" => list(any()),
+        "gatewayArn" => String.t() | atom(),
+        "gatewayFilter" => gateway_filter(),
+        "maxDurationExpiresAt" => [non_neg_integer()],
+        "name" => String.t() | atom(),
+        "results" => a_b_test_results(),
+        "roleArn" => String.t() | atom(),
+        "startedAt" => [non_neg_integer()],
+        "status" => list(any()),
+        "stoppedAt" => [non_neg_integer()],
+        "updatedAt" => [non_neg_integer()],
+        "variants" => list(variant())
+      }
+
+  """
+  @type get_a_b_test_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       harness_metadata_event() :: %{
         "metrics" => harness_stream_metrics(),
         "usage" => harness_token_usage()
@@ -1539,6 +2015,31 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type basic_auth() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      list_a_b_tests_response() :: %{
+        "abTests" => list(a_b_test_summary()),
+        "nextToken" => [String.t() | atom()]
+      }
+
+  """
+  @type list_a_b_tests_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      system_prompt_recommendation_config() :: %{
+        "agentTraces" => list(),
+        "evaluationConfig" => recommendation_evaluation_config(),
+        "systemPrompt" => list()
+      }
+
+  """
+  @type system_prompt_recommendation_config() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1664,6 +2165,15 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      delete_batch_evaluation_request() :: %{}
+
+  """
+  @type delete_batch_evaluation_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
       mcp_descriptor() :: %{
         "server" => server_definition(),
         "tools" => tools_definition()
@@ -1695,6 +2205,18 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type internal_server_exception() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      configuration_bundle_ref() :: %{
+        "bundleArn" => String.t() | atom(),
+        "bundleVersion" => String.t() | atom()
+      }
+
+  """
+  @type configuration_bundle_ref() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1759,6 +2281,26 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type certificate() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      get_batch_evaluation_request() :: %{}
+
+  """
+  @type get_batch_evaluation_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
+      tool_description_text_input() :: %{
+        "tools" => list(tool_description_input())
+      }
+
+  """
+  @type tool_description_text_input() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1887,6 +2429,30 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      confidence_interval() :: %{
+        "lower" => [float()],
+        "upper" => [float()]
+      }
+
+  """
+  @type confidence_interval() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      list_batch_evaluations_request() :: %{
+        optional("maxResults") => [integer()],
+        optional("nextToken") => [String.t() | atom()]
+      }
+
+  """
+  @type list_batch_evaluations_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       harness_reasoning_text_block() :: %{
         "signature" => [String.t() | atom()],
         "text" => [String.t() | atom()]
@@ -1894,6 +2460,22 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type harness_reasoning_text_block() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      start_batch_evaluation_request() :: %{
+        optional("clientToken") => String.t() | atom(),
+        optional("description") => String.t() | atom(),
+        optional("evaluationMetadata") => list(),
+        optional("evaluators") => list(evaluator()),
+        required("batchEvaluationName") => String.t() | atom(),
+        required("dataSourceConfig") => list()
+      }
+
+  """
+  @type start_batch_evaluation_request() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -1974,6 +2556,31 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type harness_tool_use_block_delta() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      session_metadata_shape() :: %{
+        "groundTruth" => list(),
+        "metadata" => map(),
+        "sessionId" => [String.t() | atom()],
+        "testScenarioId" => [String.t() | atom()]
+      }
+
+  """
+  @type session_metadata_shape() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      evaluator() :: %{
+        "evaluatorId" => String.t() | atom()
+      }
+
+  """
+  @type evaluator() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2100,6 +2707,24 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      variant_result() :: %{
+        "absoluteChange" => [float()],
+        "confidenceInterval" => confidence_interval(),
+        "isSignificant" => [boolean()],
+        "mean" => [float()],
+        "pValue" => [float()],
+        "percentChange" => [float()],
+        "sampleSize" => [integer()],
+        "variantName" => [String.t() | atom()]
+      }
+
+  """
+  @type variant_result() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       throttling_exception() :: %{
         "message" => String.t() | atom()
       }
@@ -2163,6 +2788,19 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      system_prompt_configuration_bundle() :: %{
+        "bundleArn" => String.t() | atom(),
+        "systemPromptJsonPath" => [String.t() | atom()],
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type system_prompt_configuration_bundle() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       stop_code_interpreter_session_response() :: %{
         "codeInterpreterIdentifier" => [String.t() | atom()],
         "lastUpdatedAt" => non_neg_integer(),
@@ -2171,6 +2809,30 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type stop_code_interpreter_session_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      delete_a_b_test_response() :: %{
+        "abTestArn" => String.t() | atom(),
+        "abTestId" => String.t() | atom(),
+        "status" => list(any())
+      }
+
+  """
+  @type delete_a_b_test_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      cloud_watch_logs_rule() :: %{
+        "filters" => list(cloud_watch_logs_filter())
+      }
+
+  """
+  @type cloud_watch_logs_rule() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2200,6 +2862,51 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      system_prompt_recommendation_result() :: %{
+        "configurationBundle" => recommendation_result_configuration_bundle(),
+        "errorCode" => String.t() | atom(),
+        "errorMessage" => String.t() | atom(),
+        "recommendedSystemPrompt" => String.t() | atom()
+      }
+
+  """
+  @type system_prompt_recommendation_result() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      start_batch_evaluation_response() :: %{
+        "batchEvaluationArn" => String.t() | atom(),
+        "batchEvaluationId" => String.t() | atom(),
+        "batchEvaluationName" => String.t() | atom(),
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "evaluators" => list(evaluator()),
+        "outputConfig" => list(),
+        "status" => list(any())
+      }
+
+  """
+  @type start_batch_evaluation_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      tool_description_configuration_bundle() :: %{
+        "bundleArn" => String.t() | atom(),
+        "tools" => list(configuration_bundle_tool_entry()),
+        "versionId" => String.t() | atom()
+      }
+
+  """
+  @type tool_description_configuration_bundle() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       evaluation_expected_trajectory() :: %{
         "toolNames" => list(String.t() | atom())
       }
@@ -2223,6 +2930,22 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      evaluation_job_results() :: %{
+        "evaluatorSummaries" => list(evaluator_summary()),
+        "numberOfSessionsCompleted" => [integer()],
+        "numberOfSessionsFailed" => [integer()],
+        "numberOfSessionsIgnored" => [integer()],
+        "numberOfSessionsInProgress" => [integer()],
+        "totalNumberOfSessions" => [integer()]
+      }
+
+  """
+  @type evaluation_job_results() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       agent_card_definition() :: %{
         "inlineContent" => String.t() | atom(),
         "schemaVersion" => String.t() | atom()
@@ -2230,6 +2953,18 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type agent_card_definition() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      list_a_b_tests_request() :: %{
+        optional("maxResults") => [integer()],
+        optional("nextToken") => [String.t() | atom()]
+      }
+
+  """
+  @type list_a_b_tests_request() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2281,6 +3016,24 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type get_workload_access_token_for_user_id_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      recommendation_summary() :: %{
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "name" => String.t() | atom(),
+        "recommendationArn" => String.t() | atom(),
+        "recommendationId" => String.t() | atom(),
+        "status" => list(any()),
+        "type" => list(any()),
+        "updatedAt" => [non_neg_integer()]
+      }
+
+  """
+  @type recommendation_summary() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2390,6 +3143,18 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      list_recommendations_response() :: %{
+        "nextToken" => String.t() | atom(),
+        "recommendationSummaries" => list(recommendation_summary())
+      }
+
+  """
+  @type list_recommendations_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       content_delta_event() :: %{
         "stderr" => [String.t() | atom()],
         "stdout" => [String.t() | atom()]
@@ -2489,6 +3254,67 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      batch_evaluation_summary() :: %{
+        "batchEvaluationArn" => String.t() | atom(),
+        "batchEvaluationId" => String.t() | atom(),
+        "batchEvaluationName" => String.t() | atom(),
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "errorDetails" => list([String.t() | atom()]()),
+        "evaluationResults" => evaluation_job_results(),
+        "evaluators" => list(evaluator()),
+        "status" => list(any()),
+        "updatedAt" => [non_neg_integer()]
+      }
+
+  """
+  @type batch_evaluation_summary() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      get_a_b_test_request() :: %{}
+
+  """
+  @type get_a_b_test_request() :: %{}
+
+  @typedoc """
+
+  ## Example:
+
+      get_recommendation_response() :: %{
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "name" => String.t() | atom(),
+        "recommendationArn" => String.t() | atom(),
+        "recommendationConfig" => list(),
+        "recommendationId" => String.t() | atom(),
+        "recommendationResult" => list(),
+        "status" => list(any()),
+        "type" => list(any()),
+        "updatedAt" => [non_neg_integer()]
+      }
+
+  """
+  @type get_recommendation_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      tool_description_recommendation_config() :: %{
+        "agentTraces" => list(),
+        "toolDescription" => list()
+      }
+
+  """
+  @type tool_description_recommendation_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       agent_skills_descriptor() :: %{
         "skillDefinition" => skill_definition(),
         "skillMd" => skill_md_definition()
@@ -2524,12 +3350,36 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      target_ref() :: %{
+        "name" => String.t() | atom()
+      }
+
+  """
+  @type target_ref() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       harness_agent_core_code_interpreter_config() :: %{
         "codeInterpreterArn" => String.t() | atom()
       }
 
   """
   @type harness_agent_core_code_interpreter_config() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      variant() :: %{
+        "name" => String.t() | atom(),
+        "variantConfiguration" => variant_configuration(),
+        "weight" => [integer()]
+      }
+
+  """
+  @type variant() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2542,6 +3392,20 @@ defmodule AWS.BedrockAgentCore do
 
   """
   @type batch_delete_memory_records_output() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      evaluator_summary() :: %{
+        "evaluatorId" => [String.t() | atom()],
+        "statistics" => evaluator_statistics(),
+        "totalEvaluated" => [integer()],
+        "totalFailed" => [integer()]
+      }
+
+  """
+  @type evaluator_summary() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2573,6 +3437,41 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      list_recommendations_request() :: %{
+        optional("maxResults") => [integer()],
+        optional("nextToken") => String.t() | atom(),
+        optional("statusFilter") => list(any())
+      }
+
+  """
+  @type list_recommendations_request() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      get_batch_evaluation_response() :: %{
+        "batchEvaluationArn" => String.t() | atom(),
+        "batchEvaluationId" => String.t() | atom(),
+        "batchEvaluationName" => String.t() | atom(),
+        "createdAt" => [non_neg_integer()],
+        "dataSourceConfig" => list(),
+        "description" => String.t() | atom(),
+        "errorDetails" => list([String.t() | atom()]()),
+        "evaluationResults" => evaluation_job_results(),
+        "evaluators" => list(evaluator()),
+        "outputConfig" => list(),
+        "status" => list(any()),
+        "updatedAt" => [non_neg_integer()]
+      }
+
+  """
+  @type get_batch_evaluation_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       browser_profile_configuration() :: %{
         "profileIdentifier" => String.t() | atom()
       }
@@ -2584,12 +3483,43 @@ defmodule AWS.BedrockAgentCore do
 
   ## Example:
 
+      start_recommendation_response() :: %{
+        "createdAt" => [non_neg_integer()],
+        "description" => String.t() | atom(),
+        "name" => String.t() | atom(),
+        "recommendationArn" => String.t() | atom(),
+        "recommendationConfig" => list(),
+        "recommendationId" => String.t() | atom(),
+        "status" => list(any()),
+        "type" => list(any()),
+        "updatedAt" => [non_neg_integer()]
+      }
+
+  """
+  @type start_recommendation_response() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
       extraction_job() :: %{
         "jobId" => [String.t() | atom()]
       }
 
   """
   @type extraction_job() :: %{(String.t() | atom()) => any()}
+
+  @typedoc """
+
+  ## Example:
+
+      a_b_test_results() :: %{
+        "analysisTimestamp" => [non_neg_integer()],
+        "evaluatorMetrics" => list(evaluator_metric())
+      }
+
+  """
+  @type a_b_test_results() :: %{(String.t() | atom()) => any()}
 
   @typedoc """
 
@@ -2634,6 +3564,15 @@ defmodule AWS.BedrockAgentCore do
           | resource_not_found_exception()
           | unauthorized_exception()
 
+  @type create_a_b_test_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | service_quota_exceeded_exception()
+          | conflict_exception()
+          | unauthorized_exception()
+
   @type create_event_errors() ::
           validation_exception()
           | access_denied_exception()
@@ -2643,6 +3582,24 @@ defmodule AWS.BedrockAgentCore do
           | resource_not_found_exception()
           | throttled_exception()
           | retryable_conflict_exception()
+
+  @type delete_a_b_test_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+          | unauthorized_exception()
+
+  @type delete_batch_evaluation_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+          | unauthorized_exception()
 
   @type delete_event_errors() ::
           validation_exception()
@@ -2662,6 +3619,14 @@ defmodule AWS.BedrockAgentCore do
           | resource_not_found_exception()
           | throttled_exception()
 
+  @type delete_recommendation_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+
   @type evaluate_errors() ::
           throttling_exception()
           | validation_exception()
@@ -2673,6 +3638,14 @@ defmodule AWS.BedrockAgentCore do
           | unauthorized_exception()
           | duplicate_id_exception()
 
+  @type get_a_b_test_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | unauthorized_exception()
+
   @type get_agent_card_errors() ::
           runtime_client_error()
           | throttling_exception()
@@ -2681,6 +3654,14 @@ defmodule AWS.BedrockAgentCore do
           | internal_server_exception()
           | service_quota_exceeded_exception()
           | resource_not_found_exception()
+
+  @type get_batch_evaluation_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | unauthorized_exception()
 
   @type get_browser_session_errors() ::
           throttling_exception()
@@ -2713,6 +3694,13 @@ defmodule AWS.BedrockAgentCore do
           | service_quota_exceeded_exception()
           | resource_not_found_exception()
           | throttled_exception()
+
+  @type get_recommendation_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
 
   @type get_resource_api_key_errors() ::
           throttling_exception()
@@ -2796,6 +3784,13 @@ defmodule AWS.BedrockAgentCore do
           | internal_server_exception()
           | resource_not_found_exception()
 
+  @type list_a_b_tests_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | unauthorized_exception()
+
   @type list_actors_errors() ::
           validation_exception()
           | access_denied_exception()
@@ -2804,6 +3799,13 @@ defmodule AWS.BedrockAgentCore do
           | service_quota_exceeded_exception()
           | resource_not_found_exception()
           | throttled_exception()
+
+  @type list_batch_evaluations_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | unauthorized_exception()
 
   @type list_browser_sessions_errors() ::
           throttling_exception()
@@ -2845,6 +3847,12 @@ defmodule AWS.BedrockAgentCore do
           | resource_not_found_exception()
           | throttled_exception()
 
+  @type list_recommendations_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+
   @type list_sessions_errors() ::
           validation_exception()
           | access_denied_exception()
@@ -2879,6 +3887,15 @@ defmodule AWS.BedrockAgentCore do
           | resource_not_found_exception()
           | unauthorized_exception()
 
+  @type start_batch_evaluation_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | service_quota_exceeded_exception()
+          | conflict_exception()
+          | unauthorized_exception()
+
   @type start_browser_session_errors() ::
           throttling_exception()
           | validation_exception()
@@ -2905,6 +3922,23 @@ defmodule AWS.BedrockAgentCore do
           | resource_not_found_exception()
           | throttled_exception()
 
+  @type start_recommendation_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | service_quota_exceeded_exception()
+          | conflict_exception()
+
+  @type stop_batch_evaluation_errors() ::
+          throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+          | unauthorized_exception()
+
   @type stop_browser_session_errors() ::
           throttling_exception()
           | validation_exception()
@@ -2926,6 +3960,16 @@ defmodule AWS.BedrockAgentCore do
   @type stop_runtime_session_errors() ::
           runtime_client_error()
           | throttling_exception()
+          | validation_exception()
+          | access_denied_exception()
+          | internal_server_exception()
+          | service_quota_exceeded_exception()
+          | resource_not_found_exception()
+          | conflict_exception()
+          | unauthorized_exception()
+
+  @type update_a_b_test_errors() ::
+          throttling_exception()
           | validation_exception()
           | access_denied_exception()
           | internal_server_exception()
@@ -3095,6 +4139,39 @@ defmodule AWS.BedrockAgentCore do
   end
 
   @doc """
+  Creates an A/B test for comparing agent configurations.
+
+  A/B tests split traffic between a control variant and a treatment variant
+  through a gateway, then evaluate performance using online evaluation
+  configurations to determine which variant performs better.
+  """
+  @spec create_a_b_test(map(), create_a_b_test_request(), list()) ::
+          {:ok, create_a_b_test_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, create_a_b_test_errors()}
+  def create_a_b_test(%Client{} = client, input, options \\ []) do
+    url_path = "/ab-tests"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
   Creates an event in an AgentCore Memory resource.
 
   Events represent interactions or activities that occur within a session and are
@@ -3128,6 +4205,69 @@ defmodule AWS.BedrockAgentCore do
       input,
       options,
       201
+    )
+  end
+
+  @doc """
+  Deletes an A/B test and its associated gateway rules.
+  """
+  @spec delete_a_b_test(map(), String.t() | atom(), delete_a_b_test_request(), list()) ::
+          {:ok, delete_a_b_test_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, delete_a_b_test_errors()}
+  def delete_a_b_test(%Client{} = client, ab_test_id, input, options \\ []) do
+    url_path = "/ab-tests/#{AWS.Util.encode_uri(ab_test_id)}"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :delete,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
+  Deletes a batch evaluation and its associated results.
+  """
+  @spec delete_batch_evaluation(
+          map(),
+          String.t() | atom(),
+          delete_batch_evaluation_request(),
+          list()
+        ) ::
+          {:ok, delete_batch_evaluation_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, delete_batch_evaluation_errors()}
+  def delete_batch_evaluation(%Client{} = client, batch_evaluation_id, input, options \\ []) do
+    url_path = "/evaluations/batch-evaluate/#{AWS.Util.encode_uri(batch_evaluation_id)}"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :delete,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
     )
   end
 
@@ -3226,6 +4366,35 @@ defmodule AWS.BedrockAgentCore do
   end
 
   @doc """
+  Deletes a recommendation and its associated results.
+  """
+  @spec delete_recommendation(map(), String.t() | atom(), delete_recommendation_request(), list()) ::
+          {:ok, delete_recommendation_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, delete_recommendation_errors()}
+  def delete_recommendation(%Client{} = client, recommendation_id, input, options \\ []) do
+    url_path = "/recommendations/#{AWS.Util.encode_uri(recommendation_id)}"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :delete,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
   Performs on-demand evaluation of agent traces using a specified evaluator.
 
   This synchronous API accepts traces in OpenTelemetry format and returns
@@ -3255,6 +4424,25 @@ defmodule AWS.BedrockAgentCore do
       options,
       200
     )
+  end
+
+  @doc """
+  Retrieves detailed information about an A/B test, including its configuration,
+  status, and statistical results.
+  """
+  @spec get_a_b_test(map(), String.t() | atom(), list()) ::
+          {:ok, get_a_b_test_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, get_a_b_test_errors()}
+  def get_a_b_test(%Client{} = client, ab_test_id, options \\ []) do
+    url_path = "/ab-tests/#{AWS.Util.encode_uri(ab_test_id)}"
+    headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
   end
 
   @doc """
@@ -3305,6 +4493,25 @@ defmodule AWS.BedrockAgentCore do
         :response_header_parameters,
         [{"X-Amzn-Bedrock-AgentCore-Runtime-Session-Id", "runtimeSessionId"}]
       )
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
+  end
+
+  @doc """
+  Retrieves detailed information about a batch evaluation, including its status,
+  configuration, results, and any error details.
+  """
+  @spec get_batch_evaluation(map(), String.t() | atom(), list()) ::
+          {:ok, get_batch_evaluation_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, get_batch_evaluation_errors()}
+  def get_batch_evaluation(%Client{} = client, batch_evaluation_id, options \\ []) do
+    url_path = "/evaluations/batch-evaluate/#{AWS.Util.encode_uri(batch_evaluation_id)}"
+    headers = []
+    query_params = []
 
     meta = metadata()
 
@@ -3447,6 +4654,25 @@ defmodule AWS.BedrockAgentCore do
     url_path =
       "/memories/#{AWS.Util.encode_uri(memory_id)}/memoryRecord/#{AWS.Util.encode_uri(memory_record_id)}"
 
+    headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
+  end
+
+  @doc """
+  Retrieves detailed information about a recommendation, including its
+  configuration, status, and results.
+  """
+  @spec get_recommendation(map(), String.t() | atom(), list()) ::
+          {:ok, get_recommendation_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, get_recommendation_errors()}
+  def get_recommendation(%Client{} = client, recommendation_id, options \\ []) do
+    url_path = "/recommendations/#{AWS.Util.encode_uri(recommendation_id)}"
     headers = []
     query_params = []
 
@@ -3955,6 +5181,38 @@ defmodule AWS.BedrockAgentCore do
   end
 
   @doc """
+  Lists all A/B tests in the account.
+  """
+  @spec list_a_b_tests(map(), String.t() | atom() | nil, String.t() | atom() | nil, list()) ::
+          {:ok, list_a_b_tests_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, list_a_b_tests_errors()}
+  def list_a_b_tests(%Client{} = client, max_results \\ nil, next_token \\ nil, options \\ []) do
+    url_path = "/ab-tests"
+    headers = []
+    query_params = []
+
+    query_params =
+      if !is_nil(next_token) do
+        [{"nextToken", next_token} | query_params]
+      else
+        query_params
+      end
+
+    query_params =
+      if !is_nil(max_results) do
+        [{"maxResults", max_results} | query_params]
+      else
+        query_params
+      end
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
+  end
+
+  @doc """
   Lists all actors in an AgentCore Memory resource.
 
   We recommend using pagination to ensure that the operation returns quickly and
@@ -3987,6 +5245,49 @@ defmodule AWS.BedrockAgentCore do
       options,
       200
     )
+  end
+
+  @doc """
+  Lists all batch evaluations in the account, providing summary information about
+  each evaluation's status and configuration.
+  """
+  @spec list_batch_evaluations(
+          map(),
+          String.t() | atom() | nil,
+          String.t() | atom() | nil,
+          list()
+        ) ::
+          {:ok, list_batch_evaluations_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, list_batch_evaluations_errors()}
+  def list_batch_evaluations(
+        %Client{} = client,
+        max_results \\ nil,
+        next_token \\ nil,
+        options \\ []
+      ) do
+    url_path = "/evaluations/batch-evaluate"
+    headers = []
+    query_params = []
+
+    query_params =
+      if !is_nil(next_token) do
+        [{"nextToken", next_token} | query_params]
+      else
+        query_params
+      end
+
+    query_params =
+      if !is_nil(max_results) do
+        [{"maxResults", max_results} | query_params]
+      else
+        query_params
+      end
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
   end
 
   @doc """
@@ -4210,6 +5511,57 @@ defmodule AWS.BedrockAgentCore do
   end
 
   @doc """
+  Lists all recommendations in the account, with optional filtering by status.
+  """
+  @spec list_recommendations(
+          map(),
+          String.t() | atom() | nil,
+          String.t() | atom() | nil,
+          String.t() | atom() | nil,
+          list()
+        ) ::
+          {:ok, list_recommendations_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, list_recommendations_errors()}
+  def list_recommendations(
+        %Client{} = client,
+        max_results \\ nil,
+        next_token \\ nil,
+        status_filter \\ nil,
+        options \\ []
+      ) do
+    url_path = "/recommendations"
+    headers = []
+    query_params = []
+
+    query_params =
+      if !is_nil(status_filter) do
+        [{"status", status_filter} | query_params]
+      else
+        query_params
+      end
+
+    query_params =
+      if !is_nil(next_token) do
+        [{"nextToken", next_token} | query_params]
+      else
+        query_params
+      end
+
+    query_params =
+      if !is_nil(max_results) do
+        [{"maxResults", max_results} | query_params]
+      else
+        query_params
+      end
+
+    meta = metadata()
+
+    Request.request_rest(client, meta, :get, url_path, query_params, headers, nil, options, 200)
+  end
+
+  @doc """
   Lists sessions in an AgentCore Memory resource based on specified criteria.
 
   We recommend using pagination to ensure that the operation returns quickly and
@@ -4389,6 +5741,39 @@ defmodule AWS.BedrockAgentCore do
   end
 
   @doc """
+  Starts a batch evaluation job that evaluates agent performance across multiple
+  sessions.
+
+  Batch evaluations pull agent traces from CloudWatch Logs or an existing online
+  evaluation configuration and run specified evaluators and insights against them.
+  """
+  @spec start_batch_evaluation(map(), start_batch_evaluation_request(), list()) ::
+          {:ok, start_batch_evaluation_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, start_batch_evaluation_errors()}
+  def start_batch_evaluation(%Client{} = client, input, options \\ []) do
+    url_path = "/evaluations/batch-evaluate"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
   Creates and initializes a browser session in Amazon Bedrock AgentCore.
 
   The session enables agents to navigate and interact with web content, extract
@@ -4549,6 +5934,68 @@ defmodule AWS.BedrockAgentCore do
       input,
       options,
       200
+    )
+  end
+
+  @doc """
+  Starts a recommendation job that analyzes agent traces and generates
+  optimization suggestions for system prompts or tool descriptions to improve
+  agent performance.
+  """
+  @spec start_recommendation(map(), start_recommendation_request(), list()) ::
+          {:ok, start_recommendation_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, start_recommendation_errors()}
+  def start_recommendation(%Client{} = client, input, options \\ []) do
+    url_path = "/recommendations"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
+    )
+  end
+
+  @doc """
+  Stops a running batch evaluation.
+
+  Sessions that have already been evaluated retain their results.
+  """
+  @spec stop_batch_evaluation(map(), String.t() | atom(), stop_batch_evaluation_request(), list()) ::
+          {:ok, stop_batch_evaluation_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, stop_batch_evaluation_errors()}
+  def stop_batch_evaluation(%Client{} = client, batch_evaluation_id, input, options \\ []) do
+    url_path = "/evaluations/batch-evaluate/#{AWS.Util.encode_uri(batch_evaluation_id)}/stop"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :post,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
     )
   end
 
@@ -4715,6 +6162,36 @@ defmodule AWS.BedrockAgentCore do
       input,
       options,
       200
+    )
+  end
+
+  @doc """
+  Updates an A/B test's configuration, including variants, traffic allocation,
+  evaluation settings, or execution status.
+  """
+  @spec update_a_b_test(map(), String.t() | atom(), update_a_b_test_request(), list()) ::
+          {:ok, update_a_b_test_response(), any()}
+          | {:error, {:unexpected_response, any()}}
+          | {:error, term()}
+          | {:error, update_a_b_test_errors()}
+  def update_a_b_test(%Client{} = client, ab_test_id, input, options \\ []) do
+    url_path = "/ab-tests/#{AWS.Util.encode_uri(ab_test_id)}"
+    headers = []
+    custom_headers = []
+    query_params = []
+
+    meta = metadata()
+
+    Request.request_rest(
+      client,
+      meta,
+      :put,
+      url_path,
+      query_params,
+      custom_headers ++ headers,
+      input,
+      options,
+      202
     )
   end
 
